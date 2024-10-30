@@ -84,6 +84,7 @@ export class Organizations extends Resource<{ realm?: string }> {
     path: "/{orgId}/members",
     urlParamKeys: ["orgId"],
     payloadKey: "userId",
+    headers: { "content-type": "text/plain" },
   });
 
   public delMember = this.makeRequest<
@@ -133,6 +134,7 @@ export class Organizations extends Resource<{ realm?: string }> {
     path: "/{orgId}/identity-providers",
     urlParamKeys: ["orgId"],
     payloadKey: "alias",
+    headers: { "content-type": "text/plain" },
   });
 
   public unLinkIdp = this.makeRequest<{ orgId: string; alias: string }, string>(

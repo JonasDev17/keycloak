@@ -220,7 +220,10 @@ export class Agent {
       Object.assign(searchParams, payload);
     } else if (requestHeaders.get("content-type") === "text/plain") {
       // Pass the payload as a plain string if the content type is 'text/plain'.
-      requestOptions.body = payload as unknown as string;
+      requestOptions.body =
+        payloadKey && typeof payload[payloadKey] === "string"
+          ? payload[payloadKey]
+          : (payload as unknown as string);
     } else if (payload instanceof FormData) {
       requestOptions.body = payload;
     } else {
